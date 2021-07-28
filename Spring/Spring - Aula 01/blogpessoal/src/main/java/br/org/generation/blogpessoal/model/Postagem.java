@@ -13,27 +13,27 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
-
-@Entity
-@Table(name = "tb_postagens")
+         //Create Table tb_postagens
+@Entity //Essa classe define uma tabela no meu Banco de Dados --> É uma entidade
+@Table(name = "tb_postagens") // Confere o nome da tabela --> tb_postagens
 public class Postagem {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id //Descrevendo a chave primária 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)//Descrevendo o auto incremento
 	private long id;
 	
-	@NotNull(message = "O campo titulo é  obrigatório!")
-	@Size(min = 5, max = 100, message = "O campo título, tem que ter no mínimo 5 e no máximo 100 caracteres." )
-	private String titulo;
+	@NotNull(message = "O campo titulo é  obrigatório!") //Indica que não pode ser vazio
+	@Size(min = 5, max = 100, message = "O campo título, tem que ter no mínimo 5 e no máximo 100 caracteres." ) //Indica o tamanho do título
+	private String titulo; //Indica que é uma String
 	
-	@NotNull(message = "O campo texto é obrigatório!")
-	@Size(min = 10, max = 500, message = "O campo Texto de ve conter no mínimo 10 e no máximo 500 caracteres.")
-	private String texto;
+	@NotNull(message = "O campo texto é obrigatório!") //Indica que não pode ser vazio
+	@Size(min = 10, max = 500, message = "O campo Texto deve conter no mínimo 10 e no máximo 500 caracteres.")//Indica o tamanho do título
+	private String texto; //Indica que é uma String
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data = new java.sql.Date(System.currentTimeMillis());
 
-	/*métodos gets e sets*/
+	/*Métodos - Gets e Sets*/
 
 	public long getId() {
 		return id;
