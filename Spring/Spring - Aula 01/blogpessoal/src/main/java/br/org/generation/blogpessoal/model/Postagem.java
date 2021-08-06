@@ -6,34 +6,44 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-         //Create Table tb_postagens
-@Entity //Essa classe define uma tabela no meu Banco de Dados --> É uma entidade
-@Table(name = "tb_postagens") // Confere o nome da tabela --> tb_postagens
+
+
+@Entity 
+@Table(name = "tb_postagens") 
 public class Postagem {
 
-	@Id //Descrevendo a chave primária 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)//Descrevendo o auto incremento
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotNull(message = "O campo titulo é  obrigatório!") //Indica que não pode ser vazio
+	@NotNull(message = "O campo titulo é  obrigatório!")
 	@Size(min = 5, max = 100, message = "O campo título, tem que ter no mínimo 5 e no máximo 100 caracteres." ) //Indica o tamanho do título
 	private String titulo; //Indica que é uma String
 	
-	@NotNull(message = "O campo texto é obrigatório!") //Indica que não pode ser vazio
+	@NotNull(message = "O campo texto é obrigatório!") 
 	@Size(min = 10, max = 500, message = "O campo Texto deve conter no mínimo 10 e no máximo 500 caracteres.")//Indica o tamanho do título
-	private String texto; //Indica que é uma String
+	private String texto; 
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data = new java.sql.Date(System.currentTimeMillis());
+	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Tema tema;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;
 
-	/*Métodos - Gets e Sets*/
 
 	public long getId() {
 		return id;
@@ -65,6 +75,22 @@ public class Postagem {
 
 	public void setData(Date data) {
 		this.data = data;
+	}
+	
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	
