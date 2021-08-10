@@ -18,28 +18,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
-//O Teste da Classe Usuario da camada Model, não utiliza o Banco de Dados.
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class UsuarioTest {
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)// indica que é uma classe de teste do spring
+public class UsuarioTest {				//random port define uma porta livre se sua aplicação já esta rodando
     
     public Usuario usuario;
-	public Usuario usuarioNulo = new Usuario();
+	public Usuario usuarioNulo = new Usuario(); 
 
 	@Autowired
 	private  ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 	
 	Validator validator = factory.getValidator();
 
-	@BeforeEach
+	@BeforeEach // antes de cada
 	public void start() {
 
-		LocalDate data = LocalDate.parse("2000-07-22", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		LocalDate data = LocalDate.parse("1997-06-22", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		
-        usuario = new Usuario(0L, "João da Silva", "joao@email.com.br", "13465278", data);
+        usuario = new Usuario(0L, "Gabriel Almeida", "austbiel@email.com.br", "gabriel1018", data); // a parte de usuario é a mão
 
 	}
 
-	@Test
+	@Test // o metodo testa valida atributos é um test
 	@DisplayName("✔ Valida Atributos Não Nulos")
 	void testValidaAtributos() {
 
@@ -58,7 +57,7 @@ public class UsuarioTest {
 		
 		System.out.println(violacao.toString());
 
-		assertTrue(violacao.isEmpty()); 
+		assertTrue(violacao.isEmpty());
 	}
 
 }
