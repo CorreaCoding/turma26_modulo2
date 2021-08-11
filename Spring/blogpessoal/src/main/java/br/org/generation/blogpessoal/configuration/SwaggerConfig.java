@@ -31,7 +31,8 @@ public class SwaggerConfig {
 
 	public static ApiInfo metadata() {
 
-		return new ApiInfoBuilder().title("Blog Pessoal").description("Projeto API Spring - Blog Pessoal realizado no Bootcamp da Generation Brasil")
+		return new ApiInfoBuilder().title("Blog Pessoal")
+				.description("Projeto API Spring - Blog Pessoal realizado no Bootcamp da Generation Brasil")
 				.version("1.0.0").license("Apache License Version 2.0").licenseUrl("https://github.com/CorreaCoding")
 				.contact(contact()).build();
 	}

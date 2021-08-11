@@ -31,12 +31,14 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 
+	// Buscando todos os Usuários
 	@GetMapping("/all")
 	public ResponseEntity<List<Usuario>> getAll() {
 
 		return ResponseEntity.ok(usuarioRepository.findAll());
 	}
 
+	// Buscando um usuário através do ID
 	@GetMapping("/{id}")
 	public ResponseEntity<Usuario> getById(@PathVariable long id) {
 		return usuarioRepository.findById(id).map(resp -> ResponseEntity.ok(resp))
@@ -44,6 +46,7 @@ public class UsuarioController {
 
 	}
 
+	// Buscando pelo nome do Usuário
 	@GetMapping("/nome/{nome}")
 	public ResponseEntity<List<Usuario>> getByNome(@PathVariable String nome) {
 
@@ -51,8 +54,9 @@ public class UsuarioController {
 
 	}
 
+	// Cadastrando Usuário
 	@PostMapping("/cadastrar")
-	public ResponseEntity <Usuario> Post(@RequestBody Usuario usuario) {
+	public ResponseEntity<Usuario> Post(@RequestBody Usuario usuario) {
 
 		Usuario usuarioResp = usuarioService.cadastrarUsuario(usuario);
 		try {
@@ -63,12 +67,14 @@ public class UsuarioController {
 
 	}
 
+	// Logando
 	@PostMapping("/logar")
 	public ResponseEntity<UsuarioLogin> autenticationUsuario(@RequestBody Optional<UsuarioLogin> usuario) {
 		return usuarioService.logarUsuario(usuario).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 
+	// Método de alteração
 	@PutMapping("/alterar")
 	public ResponseEntity<Usuario> putUsuario(@RequestBody Usuario usuario) {
 		Optional<Usuario> updateUsuario = usuarioService.atualizarUsuario(usuario);
