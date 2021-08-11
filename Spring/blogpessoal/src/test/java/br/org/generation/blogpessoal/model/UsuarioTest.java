@@ -18,8 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)// indica que é uma classe de teste do spring
-public class UsuarioTest {				//random port define uma porta livre se sua aplicação já esta rodando
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+public class UsuarioTest {				
     
     public Usuario usuario;
 	public Usuario usuarioNulo = new Usuario(); 
