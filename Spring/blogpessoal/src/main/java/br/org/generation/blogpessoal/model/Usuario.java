@@ -36,7 +36,7 @@ public class Usuario {
 	private String usuario;// no lugar de email
 
 	@NotNull(message = "É obrigatório preencher essa informação")
-	@Size(min = 5, message = "Este campo deve ter entre no mínimo 5 caracteres")
+	@Size(min = 2, message = "Este campo deve ter entre no mínimo 5 caracteres")
 	private String senha;
 
 	@Column(name = "dt_nascimento")

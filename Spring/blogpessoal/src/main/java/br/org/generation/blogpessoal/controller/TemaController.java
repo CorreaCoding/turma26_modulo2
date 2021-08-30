@@ -18,28 +18,29 @@ import org.springframework.web.bind.annotation.RestController;
 import br.org.generation.blogpessoal.model.Tema;
 import br.org.generation.blogpessoal.repository.TemaRepository;
 
-@RestController
-@RequestMapping("/tema")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+//localhost:8080 --> Servidor local
+@RestController // Classe controladora do tipo Rest --> Projeto com interfaces bem definidas, comunicação de aplicações --> Responde requisições
+@RequestMapping("/tema") // Esta anotação mapeia o endereço da Classe
+@CrossOrigin(origins = "*", allowedHeaders = "*") // SOFEA --> Serve para unir o back-end e o front-end que estejam em servidores diferentes.
 public class TemaController {
 	
-	@Autowired
+	@Autowired // Injeção de Dependências --> Transferindo a responsabilidade da Interface para o Spring, o Spring passa a gerenciar tudo.
 	private TemaRepository temaRepository;
 	
-	//Buscando todos os Temas
+	//Listar todas os Temas
 	@GetMapping
 	public ResponseEntity<List<Tema>> getAll(){
 		
 			return ResponseEntity.ok(temaRepository.findAll());
 	}
 	
-	//Buscando através do ID - Método Lambda
-	@GetMapping("/{id}")
+	// Listar Tema por ID - Método 03: LAMBDA --> É menos verboso
+	//Traz apenas umn Tema
+	@GetMapping("/{id}")				 //@Path Variable é a "variável de caminho" para realizar esta requisição.
 	public ResponseEntity<Tema> getById(@PathVariable long id){
-		
-		return temaRepository.findById(id)
-				.map(resp -> ResponseEntity.ok(resp))
-				.orElse(ResponseEntity.notFound().build());
+		return temaRepository.findById(id)  //resp equivale a resposta da busca solicitada.
+				.map(resp -> ResponseEntity.ok(resp))//Se entrar uma resposta correta
+				.orElse(ResponseEntity.notFound().build());// Se não acontecer o esperado
 				
 	}
 	

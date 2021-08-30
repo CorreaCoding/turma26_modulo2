@@ -7,10 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import br.org.generation.blogpessoal.model.Postagem;
 
-@Repository
+@Repository// Extends --> Está fazendo uma herança dos métodos da JpaRepository
 public interface PostagemRepository  extends JpaRepository<Postagem, Long> {
-
-	//Dando um selec e procurando o campo Título na tabela Postagem
+                                                         //<Classe onde está a tabela, id com L maiúsculo, pois é uma classe>
+	//Assinatura de método específico
 	public List <Postagem> findAllByTituloContainingIgnoreCase(String titulo);
-	//Select*from tb_postagens where titulo like %titulo%
+	//Select*From tb_postagens where titulo like %titulo%
 }
